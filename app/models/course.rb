@@ -1,14 +1,25 @@
 class Course < ApplicationRecord
 
-    validates :name, presence: true, uniqueness: true
+    # validates :name, presence: true, uniqueness: true
 
-    belongs_to :
-        primary_key: 
-        foreign_key: 
-        class_name: 
+    has_many :enrollments,
+        primary_key: :id,
+        foreign_key: :course_id, 
+        class_name: :Enrollment
 
-    has_many 
-        primary_key: 
-        foreign_key: 
-        class_name: 
+    has_many :enrolled_students,
+        through: :enrollments,
+        source: :user
+
+    
+    belongs_to :prerequisite,
+        primary_key: :id,
+        foreign_key: :prereq_id,
+        class_name: :Course
+
+    belongs_to :instructor,
+        primary_key: :id,
+        foreign_key: :instructor_id,
+        class_name: :User
+    
 end

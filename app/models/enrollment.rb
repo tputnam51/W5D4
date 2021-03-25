@@ -1,16 +1,16 @@
 class Enrollment < ApplicationRecord
 
-    validates 
+    validates :student_id, null: false
 
-    belongs_to :courses
-        primary_key: :id
-        foreign_key: 
-        class_name: 
+    belongs_to :course,
+        primary_key: :id,
+        foreign_key: :course_id,
+        class_name: :Course
 
-    has_many 
-        primary_key: 
-        foreign_key: 
-        class_name: 
+    belongs_to :user,
+        primary_key: :id,
+        foreign_key: :student_id,
+        class_name: :User
 
 end
 
